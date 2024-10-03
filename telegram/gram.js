@@ -18,17 +18,52 @@ import sqlite3 from 'sqlite3';
       },
     );
     await client.start({
-      // phoneNumber: '+5564999859851',
+      //phoneNumber: '+5564999859851',
       // password: async () => await input.text("Please enter your password: "),
-      // phoneCode: async () =>
-      // await input.text('Please enter the code you received: '),
-      // onError: (err) => console.log(err),
+      //phoneCode: async () =>
+    // await input.text('Please enter the code you received: '),
+    //   onError: (err) => console.log(err),
     });
     console.log('You should now be connected.');
     //console.log(client.session.save()); // Save this string to avoid logging in again
   
     async function onMessage(event) {
+      const filter = ['disparodg'];
+
+      const chat = await event.message.getChat();
+      const username = chat.username;
+      const update = event.message;
+
+      if (filter.includes(username)) {
+        if(update.media) {
+            const media = await client.downloadMedia(update, {
+                progressCallback: console.log,
+              });
+            
+              const path = '../db/media/' + uuid() + '.jpg';
+            
+            await fs.writeFile(path, media);
+            
+            const caption = update.message;
+
+            let db = new sqlite3.Database('../db/db.sqlite3');
+
+            db.run(
+                `INSERT INTO media(path, caption, is_sent) VALUES(?, ?, ?)`,
+                [path, caption, 0],
+                function (err) {
+                  if (err) {
+                    return console.log(err.message);
+                  }
+                  // get the last insert id
+                  console.log(`A row has been inserted with rowid ${this.lastID}`);
+                },
+              );
       
+            db.close();
+        }
+      }
+
     }
   
     client.addEventHandler(onMessage, new NewMessage({}));

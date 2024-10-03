@@ -1,4 +1,4 @@
 export const phoneNumber = '+5564999859851';
-export const apiId = 21086870;
-export const apiHash = '5c676788a10fb37052609ccd3ab4975f';
-export const stringSession = ''
+export const apiId = 28244238;
+export const apiHash = '7e74ba73564c5fcbc87b558517531fe5';
+export const stringSession = '1AQAOMTQ5LjE1NC4xNzUuNTUBu12/cOQza/8DHDW6A5GFVXFbag5+WMd4KY5/pRi3zEi2pvZuDEskdY5DOxDwvAqBVtK9wWG3y0JEi7LTRyauShijjM61Yl7//jTJgViJXTq3hyiiqP4anrpQOxT/mvzrsBIdb7wec+o+zEkI6h1U3HLgTnWu163igIV67O7bKWhhFOmbIvPqNs0zZhdg2N9WB5G8DXt33J0p7KS7iakUgt2/WdkCMz2Cnag4heUjbyhURNboHoxUFQQoBVUH5EBmPIbVhzaKTmlT23+kajp7ae++0AXHwqvEoPrLdRQkTSSZIzuTo5Xzg9V9Y8LulBkoBuTRr/zfzHX2U1cpM55vFLU='
