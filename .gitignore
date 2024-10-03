@@ -1,4 +1,4 @@
 node_modules/
-.wwebjs_auth/
-.wwebjs_cache/
+whatsapp/.wwebjs_auth/
+whatsapp/.wwebjs_cache/
 package-lock.json
