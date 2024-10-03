@@ -6,7 +6,6 @@ import qrcode from 'qrcode-terminal';
 import { promises as fs } from 'fs';
 import SmartInterval from 'smartinterval';
 
-const bot = '556499859851-1610905290@g.us';
 const chats = [
     '120363338832607205@g.us', //João
     '120363322187535013@g.us', //Jefferson
