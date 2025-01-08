@@ -28,14 +28,12 @@ import sqlite3 from 'sqlite3';
     //console.log(client.session.save()); // Save this string to avoid logging in again
   
     async function onMessage(event) {
-      const filter = ['disparodg'];
+      if (event.message.isGroup) {
+        const chat = await client.getEntity(event.message.peerId);
+        if (chat.title == "DisparoDG") {
+          const update = event.message;
 
-      const chat = await event.message.getChat();
-      const username = chat.username;
-      const update = event.message;
-
-      if (filter.includes(username)) {
-        if(update.media) {
+          if(update.media) {
             const media = await client.downloadMedia(update, {
                 progressCallback: console.log,
               });
@@ -62,6 +60,8 @@ import sqlite3 from 'sqlite3';
       
             db.close();
         }
+        }
+
       }
 
     }
