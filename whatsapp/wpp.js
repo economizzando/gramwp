@@ -6,11 +6,17 @@ import qrcode from 'qrcode-terminal';
 import { promises as fs } from 'fs';
 import SmartInterval from 'smartinterval';
 
-const chats = [
-    '120363338832607205@g.us', //João
-    '120363322187535013@g.us', //Jefferson
-    '120363338618670545@g.us', //Gabs
-];
+const groups = [
+  { name: 'Grupo DualSense',
+    group_id: '120363419218299953@g.us' //PD.Cancelados Playstation
+  },
+  {
+    name: 'Grupo Switch 2',
+    group_id: '120363402219130428@g.us' //PD.Cancelados Nintendo
+  }
+  //'120363399726344898@g.us', //DG Pré-vendas #23
+    //'120363415740914277@g.us', //DG Pré-vendas
+]
 
 const client = new Client({
     authStrategy: new LocalAuth(),
@@ -55,15 +61,16 @@ async function sendMedia() {
         }
         const media = MessageMedia.fromFilePath(row.path);
         const caption = row.caption;
+        const groupName = row.group_name;
+        
+        const group = groups.find(g => g.name === groupName);
+        const groupId = group.group_id;
+    
+        await client.sendMessage(groupId, media, {
+          caption: caption,
+        });
 
-        for (let i in chats) {
-            await client.sendMessage(chats[i], media, {
-                caption: caption,
-              });
-
-            console.log('Mensagem enviada para ', chats[i]);
-        }
-
+        console.log('Mensagem enviada para ', groupName);
       });
       db.run('UPDATE media SET is_sent = 1 WHERE is_sent = 0', async (err) => {
         if (err) {
